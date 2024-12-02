@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo de Energia por Região</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f3f3eb;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        img {
+            width: 100%;
+            max-width: 600px;
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Consumo de Energia por Região</h1>
+        <img src="/static/mapa_brasil.png" alt="Mapa do Brasil">
+        <form method="POST" action="/calcular">
+            <div>
+                <label for="regiao">Escolha a região:</label>
+                <select name="regiao" id="regiao">
+                    <option value="#">---</option>
+                    <option value="Norte">Norte</option>
+                    <option value="Nordeste">Nordeste</option>
+                    <option value="Sudeste">Sudeste</option>
+                    <option value="Sul">Sul</option>
+                    <option value="Centro-Oeste">Centro-Oeste</option>
+                </select>
+            </div>
+            <div>
+                <label for="ano">Escolha o ano:</label>
+                <select name="ano" id="ano">
+                    <option value="#">---</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                </select>
+            </div>
+            <button type="submit">Mostrar Consumo</button>
+        </form>
+        {% if consumo is not none %}
+        <div id="resultado">
+            Consumo total na região <strong>{{ regiao }}</strong> em <strong>{{ ano }}</strong>: {{ consumo | int | tojson }} kWh
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
